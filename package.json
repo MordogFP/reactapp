@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack && webpack-dev-server --progress",
-    "build": "webpack"
+    "start": "set NODE_ENV=dev webpack && webpack-dev-server --progress",
+    "build": "webpack",
+    "prod": "set NODE_ENV=production && webpack --config ./webpack.production.config.js --progress"
   },
   "author": "kliasheu",
   "license": "ISC",
