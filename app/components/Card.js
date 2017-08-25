@@ -1,6 +1,18 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import CheckList from './CheckList';
 import marked from 'marked';
+
+let titlePropType = (props, propName, componentName) => {
+    if (props[propName]) {
+        let value = props[propName];
+        if (typeof value !== 'string' || value.length > 80) {
+            return new Error(
+                `${propName} in ${componentName} is longer than 80 characters`
+            );
+        }
+    }
+};
 
 class Card extends Component {
     constructor(){
@@ -32,7 +44,7 @@ class Card extends Component {
         };
         return (
             <div className="card">
-                <div style={sideColor}></div>
+                <div style={sideColor} />
                 <div className={this.state.showDetails ? "card__title card__title--is-open" : "card__title"}
                      onClick={this.toggleDetails.bind(this)}>
                     {this.props.title}
@@ -42,5 +54,14 @@ class Card extends Component {
         );
     }
 }
+
+Card.propTypes = {
+    id: PropTypes.number,
+    title: titlePropType,
+    description: PropTypes.string,
+    color: PropTypes.string,
+    tasks: PropTypes.arrayOf(PropTypes.object),
+    taskCallbacks: PropTypes.object,
+};
 
 export default Card;

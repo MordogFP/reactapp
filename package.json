@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "marked": "^0.3.6",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "prop-types": "^15.5.10"
   }
 }
