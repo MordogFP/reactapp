@@ -30,7 +30,7 @@ class Card extends Component {
         if (this.state.showDetails){
             cardDetails = <div className="card__details">
                 <span dangerouslySetInnerHTML={{__html:marked(this.props.description)}} />
-                <CheckList tasks={this.props.tasks}/>
+                <CheckList cardId={this.props.id} tasks={this.props.tasks} taskCallbacks={this.props.taskCallbacks}/>
             </div>
         }
         let sideColor = {

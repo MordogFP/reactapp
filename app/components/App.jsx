@@ -37,8 +37,41 @@ let cardList = [
 ];
 
 export default class App extends React.Component {
+    constructor(){
+        super();
+        this.state = {
+            cards: cardList
+        }
+    }
+
+    addTask(cardId, taskName){
+        let newTask = {id:Date.now(), name:taskName, done:false};
+        let newCards = this.state.cards.slice();
+        newCards.find((card) => card.id === cardId).tasks.push(newTask);
+        this.setState({cards: newCards});
+    }
+
+    toggleTask(cardId, taskName){
+        let newTask = {id:Date.now(), name:taskName, done:false};
+        let newCards = this.state.cards.slice();
+        newCards.find((card) => card.id === cardId).tasks.push(newTask);
+        console.log(newCards);
+        this.setState({cards: newCards});
+    }
+
+    deleteTask(cardId, taskId){
+        let newCards = this.state.cards.slice();
+        newCards.find((card) => card.id === cardId).tasks.splice(taskId, 1);
+        console.log(newCards);
+        this.setState({cards: newCards});
+    }
+
     render() {
         return (
-            <KanbanBoard cards={cardList} />);
+            <KanbanBoard cards={this.state.cards} taskCallbacks={{
+                add: this.addTask.bind(this),
+                delete: this.deleteTask.bind(this),
+                toggle: this.toggleTask.bind(this),
+            }} />);
     }
 }
