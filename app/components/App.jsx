@@ -1,5 +1,6 @@
 import React from 'react';
 import KanbanBoard from "./KanbanBoard";
+import {MuiThemeProvider} from "material-ui/styles/index";
 
 let cardList = [
     {
@@ -37,29 +38,29 @@ let cardList = [
 ];
 
 export default class App extends React.Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
             cards: cardList
         }
     }
 
-    addTask(cardId, taskName){
-        let newTask = {id:Date.now(), name:taskName, done:false};
+    addTask(cardId, taskName) {
+        let newTask = {id: Date.now(), name: taskName, done: false};
         let newCards = this.state.cards.slice();
         newCards.find((card) => card.id === cardId).tasks.push(newTask);
         this.setState({cards: newCards});
     }
 
-    toggleTask(cardId, taskName){
-        let newTask = {id:Date.now(), name:taskName, done:false};
+    toggleTask(cardId, taskId) {
         let newCards = this.state.cards.slice();
-        newCards.find((card) => card.id === cardId).tasks.push(newTask);
-        console.log(newCards);
+        let task = newCards.find((card) => card.id === cardId).tasks
+            .find((task, taskIndex) => taskIndex === taskId);
+        task.done = !task.done;
         this.setState({cards: newCards});
     }
 
-    deleteTask(cardId, taskId){
+    deleteTask(cardId, taskId) {
         let newCards = this.state.cards.slice();
         newCards.find((card) => card.id === cardId).tasks.splice(taskId, 1);
         console.log(newCards);
@@ -68,10 +69,13 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <KanbanBoard cards={this.state.cards} taskCallbacks={{
-                add: this.addTask.bind(this),
-                delete: this.deleteTask.bind(this),
-                toggle: this.toggleTask.bind(this),
-            }} />);
+            <MuiThemeProvider>
+                <KanbanBoard cards={this.state.cards} taskCallbacks={{
+                    add: this.addTask.bind(this),
+                    delete: this.deleteTask.bind(this),
+                    toggle: this.toggleTask.bind(this),
+                }}/>
+
+            </MuiThemeProvider>);
     }
 }

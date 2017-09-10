@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {List, ListItem} from 'material-ui/List';
+import {Checkbox, Divider, FontIcon, TextField} from "material-ui";
 
 class CheckList extends Component {
     checkInputKeyPress(e) {
@@ -10,27 +12,36 @@ class CheckList extends Component {
     };
 
     removeIconClick(taskIndex) {
-        console.log(taskIndex);
         this.props.taskCallbacks.delete(this.props.cardId, taskIndex);
     };
 
+
+    updateCheck(taskIndex) {
+        this.props.taskCallbacks.toggle(this.props.cardId, taskIndex);
+    }
+
     render() {
-        console.log(this.props);
         let tasks = this.props.tasks.map((task, taskIndex) =>
             (
-                <li key={task.id} className="checklist__task">
-                    <input type="checkbox" defaultChecked={task.done}/>
-                    {task.name}
-                    <a href="#" className="checklist__task--remove"
-                       onClick={this.removeIconClick.bind(this, taskIndex)}/>
-                </li>
+                <ListItem key={task.id} className="checklist__task">
+
+                    <Checkbox label={task.name}
+                              style={{float:'left', width:'95%'}}
+                        checked={task.done}
+                        onCheck={this.updateCheck.bind(this, taskIndex)}
+                    />
+                    <FontIcon className="material-icons" onClick={this.removeIconClick.bind(this, taskIndex)} >
+                        clear
+                    </FontIcon>
+                </ListItem>
             ));
 
         return (
             <div className="checklist">
-                <ul>{tasks}</ul>
-                <input type="text" onKeyPress={this.checkInputKeyPress.bind(this)} className="checklist--add-task"
-                       placeholder="Type then hit Enter"/>
+                <List title="">{tasks}</List>
+                <TextField onKeyPress={this.checkInputKeyPress.bind(this)} className="checklist--add-task"
+                    hintText="Type then hit Enter" placeholder=""
+                />
             </div>
         );
     }
