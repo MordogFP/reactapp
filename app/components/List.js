@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card';
+import {Card as materialCard} from "material-ui";
+import {CardHeader, CardTitle} from "material-ui/Card/index";
 
 class List extends Component {
     render() {
@@ -14,10 +16,10 @@ class List extends Component {
                          taskCallbacks={this.props.taskCallbacks}/>
         });
         return (
-            <div className="list">
-                <h1>{this.props.title}</h1>
+            <materialCard className="list">
+                <CardTitle title={this.props.title} />
                 {cards}
-            </div>
+            </materialCard>
         );
     }
 }

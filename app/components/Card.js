@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import CheckList from './CheckList';
 import marked from 'marked';
+import {CardHeader, CardText} from "material-ui/Card/index";
 
 let titlePropType = (props, propName, componentName) => {
     if (props[propName]) {
@@ -28,27 +29,25 @@ class Card extends Component {
     render() {
         let cardDetails;
         if (this.state.showDetails){
-            cardDetails = <div className="card__details">
+            cardDetails = <CardText className="card__details">
                 <span dangerouslySetInnerHTML={{__html:marked(this.props.description)}} />
                 <CheckList cardId={this.props.id} tasks={this.props.tasks} taskCallbacks={this.props.taskCallbacks}/>
-            </div>
+            </CardText>
         }
-        let sideColor = {
-            position: 'absolute',
-            zIndex: -1,
-            top: 0,
-            bottom: 0,
-            left: 0,
-            width: 7,
-            backgroundColor: this.props.color
-        };
+        // let sideColor = {
+        //     position: 'absolute',
+        //     zIndex: -1,
+        //     top: 0,
+        //     bottom: 0,
+        //     left: 0,
+        //     width: 7,
+        //     backgroundColor: this.props.color
+        // };
         return (
-            <div className="card">
-                <div style={sideColor} />
-                <div className={this.state.showDetails ? "card__title card__title--is-open" : "card__title"}
-                     onClick={this.toggleDetails.bind(this)}>
-                    {this.props.title}
-                </div>
+            <div>
+                <CardHeader className={this.state.showDetails ? "card__title card__title--is-open" : "card__title"}
+                     onClick={this.toggleDetails.bind(this)} title={this.props.title}>
+                </CardHeader>
                 {cardDetails}
             </div>
         );
