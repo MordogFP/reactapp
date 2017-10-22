@@ -1,5 +1,8 @@
 body {
     font-family: 'Roboto', sans-serif;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .material-icons {
@@ -25,4 +28,20 @@ body {
 
     /* Support for IE. */
     font-feature-settings: 'liga';
+}
+
+.card__title {
+    cursor: pointer;
+}
+
+.list {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 10px;
+}
+
+.checklist__checkbox {
+    float: left;
+    width: 90% !important;
 }
