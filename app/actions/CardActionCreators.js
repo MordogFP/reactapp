@@ -5,3 +5,5 @@ let CardActionCreators = {
         return { type: FETCH_CARDS };
     }
 };
+
+export default CardActionCreators;
