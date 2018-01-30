@@ -26,7 +26,7 @@ class CheckList extends Component {
                 <ListItem key={task.id} className="checklist__task">
 
                     <Checkbox label={task.name}
-                              style={{float:'left', width:'95%'}}
+                              className="checkbox"
                         checked={task.done}
                         onCheck={this.updateCheck.bind(this, taskIndex)}
                     />

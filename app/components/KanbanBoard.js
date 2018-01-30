@@ -8,13 +8,16 @@ class KanbanBoard extends Component {
             <div className="app">
                 <List id='todo'
                       title="To Do"
-                      cards={this.props.cards.filter((card) => card.status === "todo")} taskCallbacks={this.props.taskCallbacks} />
+                      cards={this.props.cards.filter((card) => card.status === "todo")} taskCallbacks={this.props.taskCallbacks}
+                      className="card-wrapper"/>
                 <List id='in-progress'
                       title="In Progress"
-                      cards={this.props.cards.filter((card) => card.status === "in-progress")} taskCallbacks={this.props.taskCallbacks} />
+                      cards={this.props.cards.filter((card) => card.status === "in-progress")} taskCallbacks={this.props.taskCallbacks}
+                      className="card-wrapper"/>
                 <List id='done'
                       title='Done'
-                      cards={this.props.cards.filter((card) => card.status === "done")} taskCallbacks={this.props.taskCallbacks} />
+                      cards={this.props.cards.filter((card) => card.status === "done")} taskCallbacks={this.props.taskCallbacks}
+                      className="card-wrapper"/>
             </div>
         );
     }

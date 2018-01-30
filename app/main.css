@@ -1,5 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
 }
 
 .material-icons {
@@ -25,4 +26,17 @@ body {
 
     /* Support for IE. */
     font-feature-settings: 'liga';
+}
+
+.checklist__task .checkbox{
+    float: left !important;
+    width: 90% !important;
+}
+
+.list {
+    float: left;
+    width: 30%;
+}
+.checklist--add-task {
+    margin: 0 20px;
 }
