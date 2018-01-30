@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import reducers from '../reducers';
+import cardsReducer from "../reducers/CardReducer";
 
 
 const logger = (store) => (next) => (action) => {
@@ -7,10 +8,10 @@ const logger = (store) => (next) => (action) => {
         console.log('dispatching:', action);
     }
     return next(action);
-}
+};
 
 const kanbanStore = createStore(
-    reducers,
+    cardsReducer,
     applyMiddleware(logger)
 );
 

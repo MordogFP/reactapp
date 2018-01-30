@@ -1,5 +1,7 @@
 body {
     font-family: 'Roboto', sans-serif;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -28,15 +30,18 @@ body {
     font-feature-settings: 'liga';
 }
 
-.checklist__task .checkbox{
-    float: left !important;
-    width: 90% !important;
+.card__title {
+    cursor: pointer;
 }
 
 .list {
-    float: left;
     width: 30%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 10px;
 }
-.checklist--add-task {
-    margin: 0 20px;
+
+.checklist__checkbox {
+    float: left;
+    width: 90% !important;
 }

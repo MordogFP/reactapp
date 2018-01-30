@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import cardsReducer from './CardReducer'
 
 const reducers = combineReducers({
-    task: taskReducer
+    cards: cardsReducer
 });
 
 export default reducers;
